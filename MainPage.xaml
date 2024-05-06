@@ -9,6 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <!-- The last piece is to bind a TextBlock to the ViewModel.DefaultRecording.OneLineSummary property. -->
+        <TextBlock HorizontalAlignment="Center" Margin="22,64,0,0" TextWrapping="Wrap" Text="{x:Bind ViewModel.DefaultRecording.OneLineSummary}" VerticalAlignment="Center"/>
 
     </Grid>
 </Page>
