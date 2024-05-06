@@ -9,6 +9,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <!-- For the CollectionViewSource technique, first add a CollectionViewSource-->
+        <Grid.Resources>
+            <CollectionViewSource x:Name="RecordingCollection" Source="{x:Bind ViewModel.Recordings}">
+            </CollectionViewSource>
+        </Grid.Resources>
+
         <!-- The last piece is to bind a TextBlock to the ViewModel.DefaultRecording.OneLineSummary property. -->
         <TextBlock HorizontalAlignment="Center" Margin="22,64,0,0" TextWrapping="Wrap" Text="{x:Bind ViewModel.DefaultRecording.OneLineSummary}" VerticalAlignment="Center"/>
 
@@ -60,5 +66,29 @@
                 <TextBlock Text="{Binding ReleaseDateTime}" FontWeight="Bold"></TextBlock>
             </StackPanel>
         </StackPanel>
+
+        <!-- And then adjust the bindings on the ListView (which no longer needs to be named) 
+        and on the details view to use the CollectionViewSource. 
+        Note that by binding the details view directly to the CollectionViewSource -->
+        <StackPanel Margin="0,350,600,0">
+            <ListView ItemsSource="{Binding Source={StaticResource RecordingCollection}}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Recording">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Audio"></SymbolIcon>
+                            <StackPanel>
+                                <TextBlock Text="{x:Bind CompositionName}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel DataContext="{Binding Source={StaticResource RecordingCollection}}">
+                <TextBlock Text="{Binding ArtistName}" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding CompositionName}" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding ReleaseDateTime}" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Page>
