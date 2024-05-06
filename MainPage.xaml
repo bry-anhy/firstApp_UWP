@@ -39,5 +39,26 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <!-- First, here's the SelectedItem technique. For a C# application, the only change necessary is to the markup. -->
+        <StackPanel Margin="0,150,100,0">
+            <ListView x:Name="recordingListView" ItemsSource="{x:Bind ViewModel.Recordings}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Recording">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Audio"></SymbolIcon>
+                            <StackPanel>
+                                <TextBlock Text="{x:Bind CompositionName}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel DataContext="{Binding SelectedItem, ElementName=recordingListView}">
+                <TextBlock Text="{Binding ArtistName}" FontWeight="Bold" ></TextBlock>
+                <TextBlock Text="{Binding CompositionName}" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding ReleaseDateTime}" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

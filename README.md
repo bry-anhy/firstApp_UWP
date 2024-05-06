@@ -5,3 +5,6 @@ this is application UWP
 https://learn.microsoft.com/en-us/windows/apps/develop/data-binding/data-binding-overview
  + bingding to a single item
  + bingding to a collection of items
+ + adding a details view
+	-> select item
+	-> collection view source
