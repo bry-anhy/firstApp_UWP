@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.SpeechSynthesis;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +26,21 @@ namespace FirstAppUWP
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        /// <summary>
+        /// Event handlers hello world button
+        /// * Use a SpeechSynthesizer to make the app talk when you press a button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void BtnHelloWorld_Click(object sender, RoutedEventArgs e)
+        {
+            MediaElement mediaElement = new MediaElement();
+            var synth = new SpeechSynthesizer();
+            SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Hello, World!");
+            mediaElement.SetSource(stream, stream.ContentType);
+            mediaElement.Play();
         }
     }
 }
