@@ -12,5 +12,32 @@
         <!-- The last piece is to bind a TextBlock to the ViewModel.DefaultRecording.OneLineSummary property. -->
         <TextBlock HorizontalAlignment="Center" Margin="22,64,0,0" TextWrapping="Wrap" Text="{x:Bind ViewModel.DefaultRecording.OneLineSummary}" VerticalAlignment="Center"/>
 
+        <!-- And then bind a ListView to the ViewModel.Recordings property -->
+        <!-- Example binds a ListView to a collection of Recording objects. Let's start by adding the collection to our view model. 
+        Just add these new members to the RecordingViewModel class. -->
+        <!-- To remedy this, we can either override ToString to return the value of OneLineSummary -->
+        <ListView ItemsSource="{x:Bind ViewModel.Recordings}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Recording">
+                    <TextBlock Text="{x:Bind OneLineSummary}"></TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- or we can provide a data template. The data template option is a more usual solution, and a more flexible one. 
+        You specify a data template by using the ContentTemplate property of a content control or the ItemTemplate property of an items control -->
+        <ListView ItemsSource="{x:Bind ViewModel.Recordings}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Recording">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Audio" Margin="0,0,12,0"></SymbolIcon>
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind ArtistName}" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{x:Bind CompositionName}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
