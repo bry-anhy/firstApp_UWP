@@ -9,6 +9,65 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <!--Finally, replace the contents of the MainWindow.xaml file with the following markup, 
+        which declares three CollectionViewSource instances and binds them together in a chain. 
+        The subsequent controls can then bind to the appropriate CollectionViewSource, 
+        depending on its level in the hierarchy.-->
+        <Grid.Resources>
+            <!-- Leagues -->
+            <CollectionViewSource x:Name="CvsLeagues" Source="{x:Bind ViewModel}"></CollectionViewSource>
+            
+            <!-- Division -->
+            <CollectionViewSource x:Name="CvsDivisions" Source="{Binding Divisions, Source={StaticResource CvsLeagues}}"></CollectionViewSource>
+            
+            <!-- Team -->
+            <CollectionViewSource x:Name="CvsTeams" Source="{Binding Teams, Source={StaticResource CvsDivisions}}"></CollectionViewSource>
+        </Grid.Resources>
 
+        <StackPanel Orientation="Horizontal">
+            <!-- All leagues view -->
+            <StackPanel>
+                <!-- title -->
+                <TextBlock Text="All leagues"></TextBlock>
+                <!-- source leagues -->
+                <ListBox ItemsSource="{Binding Source={StaticResource CvsLeagues}}" DisplayMemberPath="Name"></ListBox>
+            </StackPanel>
+
+            <!-- All divisons view -->
+            <StackPanel>
+                <!-- title (Leagues/Divisions) hirarchical -->
+                <TextBlock Text="{Binding Name, Source={StaticResource CvsLeagues}}"></TextBlock>
+                <!-- source divisions-->
+                <ListBox ItemsSource="{Binding Source={StaticResource CvsDivisions}}" DisplayMemberPath="Name"></ListBox>
+            </StackPanel>
+
+            <!-- All teams view -->
+            <StackPanel>
+                <!-- title (Divisions/Teams) hirarchical-->
+                <TextBlock Text="{Binding Name, Source={StaticResource CvsDivisions}}"></TextBlock>
+                <!-- source teams-->
+                <ListBox ItemsSource="{Binding Source={StaticResource CvsTeams}}" DisplayMemberPath="Name"></ListBox>
+            </StackPanel>
+
+            <!-- Team view -->
+            <ContentControl Content="{Binding Source={StaticResource CvsTeams}}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="{Binding Name}" 
+                                       FontSize="15" FontWeight="Bold"/>
+                            <StackPanel Orientation="Horizontal" Margin="10,10">
+                                <TextBlock Text="Wins:" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding Wins}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="10,0">
+                                <TextBlock Text="Losses:" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding Losses}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+        </StackPanel>
     </Grid>
 </Page>

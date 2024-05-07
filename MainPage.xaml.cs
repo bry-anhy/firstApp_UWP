@@ -25,6 +25,12 @@ namespace FirstAppUWP
         public MainPage()
         {
             this.InitializeComponent();
+            ViewModel = new LeagueList();
         }
+
+        /// <summary>
+        /// define view model
+        /// </summary>
+        public LeagueList ViewModel { get; set; }
     }
 }
