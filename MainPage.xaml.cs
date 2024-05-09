@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.ServiceModel.Channels;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -68,6 +69,11 @@ namespace FirstAppUWP
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
             ////////////////////////////////////////////////////////////
+            
+            // Set XAML element as a drag region.
+            Window.Current.SetTitleBar(AppTitleBar);
+
+            AppTitleTextBlock.Text = AppInfo.Current.DisplayInfo.DisplayName;
         }
     }
 }

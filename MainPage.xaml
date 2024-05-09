@@ -8,7 +8,25 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
+    <Grid x:Name="AppTitleBar" Background="Transparent">
+        <!-- Width of the padding columns is set in LayoutMetricsChanged handler. -->
+        <!-- Using padding columns instead of Margin ensures that the background
+         paints the area under the caption control buttons (for transparent buttons). -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="LeftPaddingColumn" Width="0"/>
+            <ColumnDefinition/>
+            <ColumnDefinition x:Name="RightPaddingColumn" Width="0"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="Assets/WindowIcon.png" 
+           Grid.Column="1"
+           HorizontalAlignment="Left"
+           Width="16" Height="16"
+           Margin="8,0,0,0"/>
+        <TextBlock x:Name="AppTitleTextBlock"
+               Text="App title" 
+               Style="{StaticResource CaptionTextBlockStyle}" 
+               Grid.Column="1"
+               VerticalAlignment="Center"
+               Margin="28,0,0,0"/>
     </Grid>
 </Page>
