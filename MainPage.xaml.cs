@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.ServiceModel.Channels;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -59,6 +60,13 @@ namespace FirstAppUWP
             titleBar.InactiveBackgroundColor = Colors.SeaGreen;
             titleBar.ButtonInactiveForegroundColor = Colors.Gainsboro;
             titleBar.ButtonInactiveBackgroundColor = Colors.SeaGreen;
+            ////////////////////////////////////////////////////////////
+
+
+            ////////////////////////////////////////////////////////////
+            // Hide default title bar.
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitleBar.ExtendViewIntoTitleBar = true;
             ////////////////////////////////////////////////////////////
         }
     }
