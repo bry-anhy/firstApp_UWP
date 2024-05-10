@@ -8,7 +8,39 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <SplitView x:Name="SvSample" IsPaneOpen="True" Grid.Row="1" DisplayMode="Inline">
+            <SplitView.Pane>
+                <RelativePanel Margin="10,0,0,0">
+                    <TextBlock x:Name="TbSampleTitle"
+                               Text="Sample title text"
+                               Style="{StaticResource SampleHeaderTextStyle}" 
+                               TextWrapping="Wrap"
+                               Margin="0,10,0,0"></TextBlock>
 
+                    <!-- Provide an AutomationProperties.Name for a list to a screen reader. A shipping app would localize this. -->
+                    <ListBox x:Name="LbScenarioControl" 
+                             SelectionChanged="LbScenarioControl_SelectionChanged"
+                             AutomationProperties.Name="Scenarios"
+                             SelectionMode="Single"
+                             HorizontalAlignment="Left"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             VerticalAlignment="Top"
+                             RelativePanel.Below="TbSampleTitle"
+                             Margin="0,10,0,0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="local:Scenario">
+                                <TextBlock Text="{x:Bind Title}"></TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </RelativePanel>
+            </SplitView.Pane>
+        </SplitView>
     </Grid>
 </Page>

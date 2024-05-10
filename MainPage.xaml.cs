@@ -26,5 +26,10 @@ namespace FirstAppUWP
         {
             this.InitializeComponent();
         }
+
+        private void LbScenarioControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
