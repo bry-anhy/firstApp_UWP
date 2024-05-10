@@ -76,6 +76,38 @@
                     </StackPanel>
                 </RelativePanel>
             </SplitView.Pane>
+
+            <RelativePanel>
+                <Frame x:Name="FrScenarioFrame"
+                       Margin="5"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       RelativePanel.Above="SpStatusPanel"
+                       RelativePanel.AlignRightWithPanel="True"
+                       RelativePanel.AlignLeftWithPanel="True"></Frame>
+                <StackPanel x:Name="SpStatusPanel"
+                            Orientation="Vertical"
+                            RelativePanel.AlignBottomWithPanel="True"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.AlignLeftWithPanel="True">
+                    <TextBlock x:Name="TbStatusLabel"
+                               Margin="10,0,0,10"
+                               TextWrapping="Wrap"
+                               Text="Status:"></TextBlock>
+                    <Border x:Name="BdStatusBorder"
+                            Margin="0,0,0,0">
+                        <ScrollViewer VerticalScrollMode="Auto"
+                                      VerticalScrollBarVisibility="Auto"
+                                      MaxHeight="200">
+                            <TextBlock x:Name="TbStatusBlock"
+                                       FontWeight="Bold"
+                                       AutomationProperties.LiveSetting="Assertive"
+                                       MaxWidth="{Binding ElementName=SvSample, Path=ActualWidth}"
+                                       Margin="10,10,10,20"
+                                       TextWrapping="Wrap"></TextBlock>
+                        </ScrollViewer>
+                    </Border>
+                </StackPanel>
+            </RelativePanel>
         </SplitView>
     </Grid>
 </Page>
