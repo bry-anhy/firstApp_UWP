@@ -46,5 +46,10 @@ namespace FirstAppUWP
         {
 
         }
+
+        private void TgbHeaderPanelButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
