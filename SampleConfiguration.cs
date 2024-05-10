@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 
 namespace FirstAppUWP
 {
@@ -15,7 +16,7 @@ namespace FirstAppUWP
     {
         public const string FEATURE_NAME = "SystemBack";
 
-        List<Scenario> scenarios = new List<Scenario>()
+        public List<Scenario> scenarios = new List<Scenario>()
         {
             new Scenario()
             {
@@ -23,11 +24,38 @@ namespace FirstAppUWP
                 ClassType = typeof(ScenarioOne)
             }
         };
+
+        public List<Scenario> Scenarios
+        {
+            get { return this.scenarios; }
+        }
+
+        public static MainPage Current;
     }
 
     public class Scenario
     {
         public string Title { get; set; }
         public Type ClassType { get; set; }
+    }
+
+    public enum NotifyType
+    {
+        StatusMessage,
+        ErrorMessage
+    }
+
+    public class ScenarioBindingConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            Scenario s = value as Scenario;
+            return (MainPage.Current.Scenarios.IndexOf(s) + 1) + ") " + s.Title;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return true;
+        }
     }
 }
