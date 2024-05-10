@@ -25,9 +25,24 @@ namespace FirstAppUWP
         public MainPage()
         {
             this.InitializeComponent();
+
+            // This is a static public property that allows downstream pages to get a handle to the MainPage instance
+            // in order to call methods that are in this class.
+            TbSampleTitle.Text = FEATURE_NAME;
+
         }
 
         private void LbScenarioControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void HlbFooter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HlbPrivacryLink_Click(object sender, RoutedEventArgs e)
         {
 
         }

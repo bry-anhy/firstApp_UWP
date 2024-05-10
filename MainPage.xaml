@@ -32,13 +32,48 @@
                              BorderThickness="0"
                              VerticalAlignment="Top"
                              RelativePanel.Below="TbSampleTitle"
-                             Margin="0,10,0,0">
+                             Margin="0,10,0,0"
+                             RelativePanel.Above="SpFooterPanel">
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="local:Scenario">
                                 <TextBlock Text="{x:Bind Title}"></TextBlock>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+
+                    <StackPanel x:Name="SpFooterPanel"
+                                Orientation="Vertical"
+                                RelativePanel.AlignBottomWithPanel="true">
+                        <Image Source="Assets/microsoft-sdk.png"
+                               AutomationProperties.Name="Microsoft Logo"
+                               Stretch="None"
+                               HorizontalAlignment="Left"
+                               Margin="10,0,0,0"></Image>
+                        <TextBlock x:Name="Copyright" 
+                                   Text="&#xA9; Microsoft Corporation. All rights reserved." 
+                                   Style="{StaticResource CopyrightTextStyle}"
+                                   RelativePanel.Above="LinksPanel" Margin="10,10,0,0"
+                                   TextWrapping="Wrap"/>
+                        <StackPanel x:Name="SpLinksPanel"
+                                    Orientation="Horizontal"
+                                    Margin="10,10,0,10">
+                            <HyperlinkButton x:Name="HlbFooter" Content="Trademarks"
+                                             Tag="http://go.microsoft.com/fwlink/?LinkID=623755"
+                                             Click="HlbFooter_Click"
+                                             FontSize="12"
+                                             Style="{StaticResource HyperlinkStyle}">
+                            </HyperlinkButton>
+                            <TextBlock Text="|"
+                                       Style="{StaticResource SeparatorStyle}"
+                                       VerticalAlignment="Center"></TextBlock>
+                            <HyperlinkButton x:Name="HlbPrivacryLink"
+                                             Content="Privacy"
+                                             Tag="http://privacy.microsoft.com"
+                                             Click="HlbPrivacryLink_Click"
+                                             FontSize="12"
+                                             Style="{StaticResource HyperlinkStyle}"></HyperlinkButton>
+                        </StackPanel>
+                    </StackPanel>
                 </RelativePanel>
             </SplitView.Pane>
         </SplitView>
