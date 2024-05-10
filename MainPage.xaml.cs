@@ -37,19 +37,31 @@ namespace FirstAppUWP
 
         }
 
-        private void HlbFooter_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Hyperlink Footer click event
+        /// * Launch Uri by tag (hyperlinkbutton)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void HlbFooter_Click(object sender, RoutedEventArgs e)
         {
-
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(((HyperlinkButton) sender).Tag.ToString()));
         }
 
         private void HlbPrivacryLink_Click(object sender, RoutedEventArgs e)
         {
-
+            HlbFooter_Click(sender, e);
         }
 
+        /// <summary>
+        /// Header panel button click event
+        /// * Show/ hide SplitView: SvSample
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TgbHeaderPanelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SvSample.IsPaneOpen = !SvSample.IsPaneOpen;
         }
     }
 }
