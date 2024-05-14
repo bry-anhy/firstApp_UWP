@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -27,6 +28,7 @@ namespace FirstAppUWP
         {
             this.InitializeComponent();
 
+            Debug.WriteLine("MainPage");
             // This is a static public property that allows downstream pages to get a handle to the MainPage instance
             // in order to call methods that are in this class.
             Current = this;
@@ -36,6 +38,7 @@ namespace FirstAppUWP
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            Debug.WriteLine("OnNavigatedTo");
             // Populate the scenario list from the SampleConfiguration.cs file
             LbScenarioControl.ItemsSource = scenarios;
             if (Window.Current.Bounds.Width < 640)
@@ -62,6 +65,7 @@ namespace FirstAppUWP
         /// <param name="e"></param>
         private void LbScenarioControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Debug.WriteLine("LbScenarioControl_SelectionChanged");
             // Clear the status block when navigating scenarios.
             NotifyUser(String.Empty, NotifyType.StatusMessage);
 
@@ -85,11 +89,13 @@ namespace FirstAppUWP
         /// <param name="e"></param>
         private async void HlbFooter_Click(object sender, RoutedEventArgs e)
         {
+            Debug.WriteLine("HlbFooter_Click");
             await Windows.System.Launcher.LaunchUriAsync(new Uri(((HyperlinkButton) sender).Tag.ToString()));
         }
 
         private void HlbPrivacryLink_Click(object sender, RoutedEventArgs e)
         {
+            Debug.WriteLine("HlbPrivacryLink_Click");
             HlbFooter_Click(sender, e);
         }
 
@@ -101,6 +107,7 @@ namespace FirstAppUWP
         /// <param name="e"></param>
         private void TgbHeaderPanelButton_Click(object sender, RoutedEventArgs e)
         {
+            Debug.WriteLine("TgbHeaderPanelButton_Click");
             SvSample.IsPaneOpen = !SvSample.IsPaneOpen;
         }
 
@@ -112,6 +119,7 @@ namespace FirstAppUWP
         /// <param name="type"></param>
         public void NotifyUser(string strMessage, NotifyType type)
         {
+            Debug.WriteLine("NotifyUser");
             switch (type)
             {
                 case NotifyType.StatusMessage:
