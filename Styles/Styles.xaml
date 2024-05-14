@@ -117,4 +117,8 @@
 
     <Style x:Key="TagLineTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
     </Style>
+
+    <Style x:Key="ScenarioDescriptionTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
+    </Style>
+
 </ResourceDictionary>

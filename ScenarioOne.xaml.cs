@@ -26,5 +26,20 @@ namespace FirstAppUWP
         {
             this.InitializeComponent();
         }
+
+        private void CkEnableBack_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CkEnableBack_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnNavigateToSecondaryPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

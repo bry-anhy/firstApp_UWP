@@ -8,7 +8,39 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid x:Name="GrdRood"
+              Margin="12,10,12,12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Description"
+                           Style="{StaticResource SampleHeaderTextStyle}"></TextBlock>
+                <TextBlock TextWrapping="Wrap"
+                           Style="{StaticResource ScenarioDescriptionTextStyle}">
+                    How to enable back navigation using system assets such as hardware back button, global navigation bar, hotkeys and title bar UI
+                </TextBlock>
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="1"
+                          VerticalScrollMode="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel HorizontalAlignment="Left"
+                            VerticalAlignment="Top">
+                    <CheckBox Name="CkEnableBack"
+                              Content="Enable Title Bar back button"
+                              Checked="CkEnableBack_Checked"
+                              Unchecked="CkEnableBack_Unchecked"></CheckBox>
+                    <Button Name="BtnNavigateToSecondaryPage"
+                            Content="Navigate to secondary page"
+                            Click="BtnNavigateToSecondaryPage_Click"></Button>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
 
     </Grid>
 </Page>
